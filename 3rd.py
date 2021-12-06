@@ -21,6 +21,15 @@ epsilon = int(''.join('0' if int(b) else '1' for b in bits), 2)
 
 print('Part 1 : ', gamma*epsilon)
 
+import numpy as np
+golf = [''.join(j[i]) for i in range(12) for j in np.array([n for n in open('3rd.txt', 'r').read().split('\n')]).T]
+def slice_per(source, step):
+    return [source[i:i+1000] for i in range(len(source))]
+golf2 = slice_per(golf, 12)
+
+print(len(golf2[0]))
+
+
 
 # Part 2
 d1 = [n for n in open('3rd.txt', 'r').read().split('\n')]
@@ -51,8 +60,3 @@ for i in range(12):
 oxy, c02 = int(d1[0], 2), int(d2[0], 2)
 
 print('Part 2 : ', oxy*c02)
-
-
-
-
-
