@@ -2,8 +2,6 @@ def main():
     print(f'Part 1 : {solve(80)}')
     print(f'Part 2 : {solve(256)}')
 
-    
-
 
 def solve(n):
     from collections import Counter
@@ -32,4 +30,3 @@ def get_data():
 
 if __name__ == "__main__":
     main()
-
