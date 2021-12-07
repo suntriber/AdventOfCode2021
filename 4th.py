@@ -45,7 +45,8 @@ def get_unmarked(board, nums):
     return unmarked
 
 
-def who_won(numbers, boards):
+def part1():
+    numbers, boards = get_data()
     nums_drawn = []
     for n in numbers:
         nums_drawn.append(n)
@@ -54,47 +55,26 @@ def who_won(numbers, boards):
                 return b, nums_drawn
                 
 
-def who_won2(numbers, boards):
-    nums_drawn = []
-    win = []
-    nums_winning = []
+def part2():
+    numbers, boards = get_data()
+    nums_drawn, win = [], []
     for n in numbers:
         nums_drawn.append(n)
         for b in boards:
             if check_bingo(nums_drawn, b):
-
-                win.append(b)
-                nums_winning.append(nums_drawn)
-                if len(win) == 100:
-                    return win, nums_winning
-
+                win.append((b, [j for j in nums_drawn], nums_drawn[-1]))
+                boards.remove(b)
+                if len(boards) == 0:
+                    return win
+            
 
 def main():
 
-    numbers, boards = get_data()
-        
-    winning_board, nums_drawn = who_won(numbers, boards)
-    num_not_in_b = get_unmarked(winning_board, nums_drawn)
+    winning_board, nums_drawn = part1()
+    print(f'Part 1 : {sum(get_unmarked(winning_board, nums_drawn)) * nums_drawn[-1]}')
 
-    print(sum(num_not_in_b) * nums_drawn[-1])
-
-    win2, nums2 = who_won2(numbers, boards)
-    num_not_in_b2 = get_unmarked(win2[-1], nums2[-1])
-
-    
-
-    
-    print(sum(num_not_in_b2) * nums2[-1][-1])
-
- 
-
-
-
-
-    
-    
-
-
+    win = part2()
+    print(f'Part 2 : {sum(get_unmarked(win[-1][0], win[-1][1])) * win[-1][2]}')
 
 
 if __name__ == "__main__":
