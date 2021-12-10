@@ -3,13 +3,14 @@ def get_data():
 
 
 def part1():
-    data = get_data()
-    data_digits = []
-    for n in data:
-        for m in n[1].split():
-            data_digits.append(m)
-    return (sum(len(x) in (2,3,4,7) for x in data_digits))
-    
+    # data = get_data()
+    # data_digits = []
+    # for n in data:
+    #     for m in n[1].split():
+    #         data_digits.append(m)
+    # return (sum(len(x) in (2,3,4,7) for x in data_digits))
+    return sum([len(x) in (2,3,4,7) for x in [m for n in [l.split('|') for l in open('8th.txt', 'r').read().splitlines()] for m in n[1].split()]]) # golfed
+
 
 def part2():
     data = get_data()
@@ -66,5 +67,5 @@ def nbr_a_in_b(a, b):
 
 
 if __name__ == "__main__":
-    print(f'Part 1 : {part1()}')
-    print(f'Part 2 : {part2()}')
+    print(f'Part 1 : {part1()}') # correct 504
+    print(f'Part 2 : {part2()}') # correct 1073431
